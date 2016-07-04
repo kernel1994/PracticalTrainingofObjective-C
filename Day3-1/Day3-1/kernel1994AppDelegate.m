@@ -17,8 +17,10 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    const int itemCount = 5;
-    const int itemXCount = itemCount - 2;
+    int c = 0;
+    const int gap = 7;
+    const int itemCount = 9;
+    const int itemXCount = itemCount;
     const int itemYCount = itemCount;
     const int itemWidth = [self.window bounds].size.width / itemXCount;
     const int itemHeight = [self.window bounds].size.height / itemYCount;
@@ -26,16 +28,17 @@
     for (int i = 0; i < itemYCount; i++) {
         for (int j = 0; j < itemXCount; j++) {
             UIView * v = [[UIView alloc] init];
-            v.frame = CGRectMake(j * itemWidth, i * itemHeight, itemWidth, itemHeight);
+            // start and end bounds size of x need to calculate, different from the gap
+            v.frame = CGRectMake(j * itemWidth + ([self.window bounds].size.width - ((itemXCount - 1) * gap + itemXCount * (itemWidth - gap))) / 2, i * itemHeight + gap, itemWidth - gap, itemHeight - gap);
             v.backgroundColor = [self createRandomColor];
-            
+
             UILabel * label = [[UILabel alloc] init];
-            label.frame = CGRectMake(0, 0, itemWidth, itemHeight);
+            label.frame = CGRectMake(([v bounds].size.width - 20) / 2,([v bounds].size.height - 20) / 2, 20, 20);
             label.textAlignment = NSTextAlignmentCenter;
-            label.text = [NSString stringWithFormat:@"label:%d-%d", i, j];
+            label.text = [NSString stringWithFormat:@"%d", c++];
             label.numberOfLines = 2;
             label.textColor = [UIColor blackColor];
-            
+            label.font = [UIFont systemFontOfSize: 15];
             [v addSubview: label];
             [self.window addSubview: v];
         }
