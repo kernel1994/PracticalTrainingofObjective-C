@@ -1,6 +1,6 @@
 //
 //  kernel1994AppDelegate.m
-//  Day4-0
+//  Day4-1
 //
 //  Created by kernel1994 on 16/7/5.
 //  Copyright (c) 2016年 kernel1994. All rights reserved.
@@ -16,6 +16,29 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    // create image view
+    UIImageView * imgView = [[UIImageView alloc] init];
+    imgView.frame = CGRectMake(0, 0, 320, 480);
+    imgView.image = [UIImage imageNamed:@"1.jpg"];
+    [self.window addSubview:imgView];
+    
+    NSMutableArray * arr = [[NSMutableArray alloc] init];
+    for (int i = 0; i < 108; i++) {
+        UIImage * img = [UIImage imageNamed: [NSString stringWithFormat:@"%d.jpg", i + 1]];
+        [arr addObject: img];
+    }
+    
+    // frame animate
+    // play time, default is number image / 30
+    imgView.animationDuration = 108 / 30;
+    // array of image view
+    imgView.animationImages = arr;
+    // repeat times, default is 0 means infinite
+    imgView.animationRepeatCount = 10;
+    // start animate
+    [imgView startAnimating];
+    
     return YES;
 }
 

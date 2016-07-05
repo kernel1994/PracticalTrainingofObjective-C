@@ -61,6 +61,11 @@ Practical Training code of Objective-C
     + 关闭定时器：
         + [timer invalidate];
         + timer = nil;
-    
-
++ 图像
+    + UIImageVIew * imgView.image = [UIImage imageNamed: @"xxx.jpg"];
+    + 帧动画：UIImageView 的功能
+        + 图像数组：imgView.animationImages = UIImageArray;
+        + 持续时间：imgView.animationDuration = ;
+        + 重复次数：imgView.animationRepeatCount = ;
+        + 开启动画：[imgView startAnimating];
 

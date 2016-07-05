@@ -1,6 +1,6 @@
 //
-//  Day4_0Tests.m
-//  Day4-0Tests
+//  Day4_1Tests.m
+//  Day4-1Tests
 //
 //  Created by kernel1994 on 16/7/5.
 //  Copyright (c) 2016年 kernel1994. All rights reserved.
@@ -8,11 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
-@interface Day4_0Tests : XCTestCase
+@interface Day4_1Tests : XCTestCase
 
 @end
 
-@implementation Day4_0Tests
+@implementation Day4_1Tests
 
 - (void)setUp
 {

@@ -6,6 +6,9 @@
 build/
 DerivedData/
 
+*.png
+*.jpg
+
 ## Various settings
 *.pbxuser
 !default.pbxuser
