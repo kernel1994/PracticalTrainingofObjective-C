@@ -10,6 +10,9 @@
 
 @implementation kernel1994AppDelegate
 
+const int itemXCount = 9;
+const int itemYCount = 12;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -19,9 +22,6 @@
     
     int c = 0;
     const int gap = 20;
-    const int itemCount = 3;
-    const int itemXCount = itemCount;
-    const int itemYCount = itemCount;
     const int itemWidth = [self.window bounds].size.width / itemXCount;
     const int itemHeight = [self.window bounds].size.height / itemYCount;
     
@@ -71,21 +71,30 @@
 - (void) timerFunc
 {
     static int i = 1;
+    const int ADD = 15;
+    
+    // first run flag; It make sure the last view's bounds normal when theis app run at the first time.
+    static int flag = 0;
 
-    // the previous view
-    UIView * vp = [self.window viewWithTag: i - 1 < 1 ? 9 : i - 1];
-    vp.layer.borderWidth = 0;
+    if (flag != 0) {
+        // the previous view
+        UIView * vp = [self.window viewWithTag: i - 1 < 1 ? itemXCount * itemYCount : i - 1];
+        // make it normal
+        vp.layer.borderWidth = 0;
+        vp.frame = CGRectMake(vp.frame.origin.x + ADD / 2, vp.frame.origin.y + ADD / 2, vp.frame.size.width - ADD, vp.frame.size.height - ADD);
+    }
     
     UIView * v = [self.window viewWithTag: i];
-    [v setBounds: CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)];
+    v.frame = CGRectMake(v.frame.origin.x - ADD / 2, v.frame.origin.y - ADD / 2, v.frame.size.width + ADD, v.frame.size.height + ADD);
     v.layer.borderColor = [UIColor blackColor].CGColor;
     v.layer.borderWidth = 1;
     [self.window setBackgroundColor: v.backgroundColor];
     
-    
+    // next
     i++;
+    flag++;
     
-    if (i > 3 * 3) {
+    if (i > itemXCount * itemYCount) {
         i = 1;
     }
     

@@ -55,6 +55,12 @@ Practical Training code of Objective-C
 + 视图标签
     + 设置：view.tag = intTag;
     + 获取：UIView * view = [self.window viewWithTag: intTag];
++ 定时器
+    + 开启定时器：
+        + NSTimer * timer = [NSTimer scheduledTimerWithTimeInterval: floatTime target: self selector: @selector(funcName) userInfo: nil repeats: ture]
+    + 关闭定时器：
+        + [timer invalidate];
+        + timer = nil;
     
 
 
