@@ -1,6 +1,5 @@
 # PracticalTrainingofObjective-C
 Practical Training code of Objective-C
-—-—
 
 # 实训记录
 
@@ -35,10 +34,10 @@ Practical Training code of Objective-C
 
 ## 2016-07-04
 + 屏幕尺寸
-> + 4x  | 3.5inch | 320 * 480pt
-> + 5x  | 4.0inch | 320 * 568pt
-> + 6x  | 4.7inch | 337 * 667pt
-> + 6px | 5.5inch | 414 * 736pt
+  + 4x  | 3.5inch | 320 * 480pt
+  + 5x  | 4.0inch | 320 * 568pt
+  + 6x  | 4.7inch | 337 * 667pt
+  + 6px | 5.5inch | 414 * 736pt
 + 坐标原点在屏幕左上角
 + 使用控件3 步骤
     + 创建对象
@@ -46,3 +45,16 @@ Practical Training code of Objective-C
     + 显示对象
 + 随机数函数：**arc4random()**;
 + 求 [a, b] 范围的随机数：与 ((b - a) + 1) 取余，然后加 a
+
+## 2016-07-05
++ 九宫格公式
+    + 列间距：父宽 - (列数 * 间距) / (列数 + 1)
+    + 行间距：父高 - (行数 * 间距) / (行数 + 1)
+    + X 坐标：列间距 + 列号 * (间距 + 视图宽度)
+    + Y 坐标：行间距 + 行号 * (间距 + 视图高度)
++ 视图标签
+    + 设置：view.tag = intTag;
+    + 获取：UIView * view = [self.window viewWithTag: intTag];
+    
+
+

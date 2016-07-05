@@ -18,8 +18,8 @@
     [self.window makeKeyAndVisible];
     
     int c = 0;
-    const int gap = 7;
-    const int itemCount = 9;
+    const int gap = 20;
+    const int itemCount = 3;
     const int itemXCount = itemCount;
     const int itemYCount = itemCount;
     const int itemWidth = [self.window bounds].size.width / itemXCount;
@@ -31,18 +31,27 @@
             // start and end bounds size of x need to calculate, different from the gap
             v.frame = CGRectMake(j * itemWidth + ([self.window bounds].size.width - ((itemXCount - 1) * gap + itemXCount * (itemWidth - gap))) / 2, i * itemHeight + gap, itemWidth - gap, itemHeight - gap);
             v.backgroundColor = [self createRandomColor];
+            // give view a unique tag
+            v.tag = ++c;
 
-            UILabel * label = [[UILabel alloc] init];
-            label.frame = CGRectMake(([v bounds].size.width - 20) / 2,([v bounds].size.height - 20) / 2, 20, 20);
-            label.textAlignment = NSTextAlignmentCenter;
-            label.text = [NSString stringWithFormat:@"%d", c++];
-            label.numberOfLines = 2;
-            label.textColor = [UIColor blackColor];
-            label.font = [UIFont systemFontOfSize: 15];
-            [v addSubview: label];
+//            UILabel * label = [[UILabel alloc] init];
+//            label.frame = CGRectMake(([v bounds].size.width - 20) / 2, ([v bounds].size.height - 20) / 2, 20, 20);
+//            label.textAlignment = NSTextAlignmentCenter;
+//            label.text = [NSString stringWithFormat:@"%d", c];
+//            label.numberOfLines = 2;
+//            label.textColor = [UIColor blackColor];
+//            label.font = [UIFont systemFontOfSize: 15];
+//            
+//            [v addSubview: label];
             [self.window addSubview: v];
         }
     }
+    
+    // timer
+    NSTimer * timer = [NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(timerFunc) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+    [timer fire];
+    
     
     return YES;
 }
@@ -59,6 +68,28 @@
     return [[UIColor alloc] initWithRed:r green:g blue:b alpha:a];
 }
 
+- (void) timerFunc
+{
+    static int i = 1;
+
+    // the previous view
+    UIView * vp = [self.window viewWithTag: i - 1 < 1 ? 9 : i - 1];
+    vp.layer.borderWidth = 0;
+    
+    UIView * v = [self.window viewWithTag: i];
+    [v setBounds: CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)];
+    v.layer.borderColor = [UIColor blackColor].CGColor;
+    v.layer.borderWidth = 1;
+    [self.window setBackgroundColor: v.backgroundColor];
+    
+    
+    i++;
+    
+    if (i > 3 * 3) {
+        i = 1;
+    }
+    
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
