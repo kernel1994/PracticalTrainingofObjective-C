@@ -53,18 +53,19 @@
     [self.planeView startAnimating];
     
     // create bullet
-    for (int i = 0; i < 25; i++) {
-        UIImage * img = [UIImage imageNamed: [NSString stringWithFormat:@"zidan1.png"]];
-        UIImageView * imgV = [[UIImageView alloc] init];
-        imgV.frame = CGRectMake(planeInitX + self.planeW / 2 - 5, planeInitY - 25, self.bulletW, self.bulletH);
-        imgV.image = img;
+    for (int i = 0; i < 20; i++) {
+        UIImageView * bullet = [[UIImageView alloc] init];
+        // initial out of screen
+        bullet.frame = CGRectMake(0, -10, self.bulletW, self.bulletH);
+        bullet.image = [UIImage imageNamed: @"zidan"];
+        bullet.tag = self.goodTag;
         
-        [self.window addSubview: imgV];
-        [self.arrBullet addObject: imgV];
+        [self.window addSubview: bullet];
+        [self.arrBullet addObject: bullet];
     }
 
     // bullet move timer
-    NSTimer * bulletTimer = [NSTimer scheduledTimerWithTimeInterval: 0.1 target:self selector:@selector(bulletMove) userInfo:nil repeats:YES];
+    NSTimer * bulletTimer = [NSTimer scheduledTimerWithTimeInterval: 0.03 target:self selector:@selector(bulletTimerFunc) userInfo:nil repeats:YES];
     
     // TODO BUG
     // plane below bullet, because there are two bullet always show in same place above of plane, I hide them after plane
@@ -76,7 +77,7 @@
         UIImageView * enemy = [[UIImageView alloc] init];
         enemy.frame = CGRectMake([self getRandomEnemyLocation], 0 - self.enemyH, self.enemyW, self.enemyH);
         enemy.image = img;
-        enemy.tag = self.enemyNormalTag;
+        enemy.tag = self.goodTag;
         
         NSMutableArray * arrExplode = [[NSMutableArray alloc] init];
         for (int i = 0; i < 5; i++) {
@@ -119,8 +120,8 @@
     self.explodeW = self.enemyW;
     self.explodeH = self.enemyH;
     
-    self.enemyNormalTag = 5;
-    self.enemyCrashTag = 6;
+    self.goodTag = 5;
+    self.badTag = 6;
 }
 
 - (void) bgMove
@@ -140,25 +141,45 @@
     }
 }
 
-- (void) bulletMove
+- (void) bulletTimerFunc
 {
-    static int j = 0;
+    static int count = 0;
+    count++;
+    if (count % 10 == 0) {
+        [self bulletFind];
+    }
     
-    UIImageView * plane = (UIImageView *) [self.window viewWithTag: 3];
- 
-    for (int i = 0; i < self.arrBullet.count; i++) {
-        UIImageView * bullet = [self.arrBullet objectAtIndex: i];
-        bullet.frame = CGRectMake(bullet.frame.origin.x, bullet.frame.origin.y - (j += 20), bullet.frame.size.width, bullet.frame.size.height);
-        
-        if (bullet.frame.origin.y < 0 ) {
-            bullet.frame = CGRectMake(plane.frame.origin.x + self.planeW / 2 - 5, plane.frame.origin.y + 15, bullet.frame.size.width, bullet.frame.size.height);
+    [self bulletMove];
+   
+}
+
+- (void) bulletFind
+{
+    // 遍历数组找可用的子弹, 更改状态为准备发射状态1
+    for (UIImageView * bullet in self.arrBullet) {
+        if (bullet.tag == self.goodTag) {
+            bullet.tag = self.badTag;
+            // 重置初始坐标，放在飞机的位置
+            bullet.center = CGPointMake(self.planeView.center.x, self.planeView.frame.origin.y);
+            break;
         }
     }
+}
 
-    if (j > self.arrBullet.count) {
-        j = 0;
+- (void) bulletMove
+{
+    for (UIImageView * bullet in self.arrBullet) {
+        if (bullet.tag == self.badTag) {
+            // the way to change one value
+            CGRect rect = bullet.frame;
+            rect.origin.y -= 3;
+            bullet.frame = rect;
+            // 临界值：出屏幕重用
+            if (rect.origin.y < -10) {
+                bullet.tag = self.goodTag;
+            }
+        }
     }
-   
 }
 
 - (void) enemyMove
@@ -193,9 +214,6 @@
     
     UIImageView * plane = (UIImageView *) [self.window viewWithTag: 3];
     plane.frame = CGRectMake(x - self.planeW / 2, y - self.planeH / 2, self.planeW, self.planeH);
-    
-    UIImageView * bullet = (UIImageView *) [self.window viewWithTag: 4];
-    bullet.frame = CGRectMake(x - self.planeW / 2 + 30, y - (self.planeH / 2 + 30), self.bulletW, self.bulletH);
 }
 
 - (void) fight
@@ -208,15 +226,17 @@
             // and... y detect
             // but there is a build-in funtion
             if (CGRectIntersectsRect(enemy.frame, bullet.frame)
-                && enemy.tag == self.enemyNormalTag) {
+                && enemy.tag == self.goodTag) {
                 [enemy startAnimating];
-                enemy.tag = self.enemyCrashTag;
+
+                enemy.tag = self.badTag;
+                bullet.frame = CGRectMake(0, -10, self.bulletW, self.bulletH);
             }
         }
         
-        if ((! [enemy isAnimating]) && (enemy.tag == self.enemyCrashTag)) {
+        if ((! [enemy isAnimating]) && (enemy.tag == self.badTag)) {
             enemy.frame = CGRectMake([self getRandomEnemyLocation], 0 - self.enemyH, self.enemyW, self.enemyH);
-            enemy.tag = self.enemyNormalTag;
+            enemy.tag = self.goodTag;
         }
     }
     
@@ -228,14 +248,14 @@
 {
     for (UIImageView * enemy in self.arrEnemy) {
         if (CGRectIntersectsRect(self.planeView.frame, enemy.frame)
-            && enemy.tag == self.enemyNormalTag) {
+            && enemy.tag == self.goodTag) {
             [enemy startAnimating];
-            enemy.tag = self.enemyCrashTag;
+            enemy.tag = self.badTag;
         }
         
-        if ((! [enemy isAnimating]) && (enemy.tag == self.enemyCrashTag)) {
+        if ((! [enemy isAnimating]) && (enemy.tag == self.badTag)) {
             enemy.frame = CGRectMake([self getRandomEnemyLocation], 0 - self.enemyH, self.enemyW, self.enemyH);
-            enemy.tag = self.enemyNormalTag;
+            enemy.tag = self.goodTag;
         }
     }
 }

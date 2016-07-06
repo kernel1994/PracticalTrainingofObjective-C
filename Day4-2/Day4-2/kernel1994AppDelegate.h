@@ -39,9 +39,12 @@
 @property int explodeW;
 @property int explodeH;
 
-/** symbol of enemy status, 5 is normal, 6 is crash */
-@property int enemyNormalTag;
-@property int enemyCrashTag;
+/** symbol of status, 5 is good, 6 is bad */
+@property int goodTag;
+@property int badTag;
+
+- (void) bulletFind;
+- (void) bulletMove;
 
 /** initialize peoperty */
 - (void) initData;
