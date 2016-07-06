@@ -69,3 +69,16 @@ Practical Training code of Objective-C
         + 重复次数：imgView.animationRepeatCount = ;
         + 开启动画：[imgView startAnimating];
 
+## 2016-07-06
++ 只更改视图的位置大小中的一个值：
+```Objective-C
+CGRect rect = view.frame;
+rect.origin.y += 5;
+view.frame = rect;
+```
++ 触摸坐标
+    + UITouch * touch = [touchs anyObject];
+    + CGPoint point = [touch locationInView: self.window];
++ 碰撞检测
+    + CGRectIntersectsRect(Rect1, Rect2)
+
