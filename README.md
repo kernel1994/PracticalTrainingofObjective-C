@@ -82,3 +82,32 @@ view.frame = rect;
 + 碰撞检测
     + CGRectIntersectsRect(Rect1, Rect2)
 
+## 2016-07-07
++ 按钮
+    + UIButton
+    + 设置标题：[btn setTitle: @"xxx" forState: UIControlStateNormal]
+    + 绑定事件：
+        + 无参：[btn addTarget: self action: @selector(funcName) forControlEvents: UIControlEventTouchUpInside]
+        + 带参：[btn addTarget: self action: @selector(funcName:) forControlEvents: UIControlEventTouchUpInside], 此处只需要:，不需要传入实参，参数是按钮对象本身，id 类型的 sender，使用时需要类型强转
+    + 设置背景：[btn setBackgroundImage: [UIImage: imageNamed: @"xxx"], forState: UIControlStateNOrmal]
+    + 将 UIButton 添加到 UIImageView 上时，UIButton 将获取不到事件，需要将 UIImageView 的 userIteractionEnabled 的属性设置为 YES
++ 零补齐格式化：%02d，两位整数，0补齐 
+
+## 2016-07-08
++ UIView 基础动画
+    + 动画开始：[UIView beginAnimatiins: nil context: nil];
+    + 持续时间：[UIView setAnimationDuration: 1.0];
+    + 提交动画：[UIView commitAnimations];
+    + 动画目标代码写在动画提交之前
++ 延迟执行
+    + 不带参：[self performSelector:@selector(funcName) withObject:nil afterDelay: 1.0];
+    + 带参数：[self performSelector:@selector(funcName:) withObject:argument afterDelay: 1.0];
++ 动画回调
+    + 设置代理：[UIView setAnimationDelegate: self];
+    + 绑定无参数：[UIView setAnimationDidStopSelector: @selector(funcName)];
+    + 绑定多参数：[UIView setAnimationDidStopSelector: @selector(animationDidStop:rinished:context:)];
+    + - (void) animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
++ 仿射变换角度
+    + view.transform = CGAffineTransFormMakeRotation(), 参数是弧度
++ 改变中心点：view.center = CGPointMake(x, y);
+

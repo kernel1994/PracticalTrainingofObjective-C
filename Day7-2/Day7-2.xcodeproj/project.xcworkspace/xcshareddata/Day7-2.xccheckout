@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>5A4B24FF-71E8-4D6B-A1E3-D692F36B5469</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Day7-2</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>70B5F2B8-B119-4856-A015-30EB654CD9B0</key>
+		<string>ssh://github.com/kernel1994/PracticalTrainingofObjective-C.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Day7-2/Day7-2.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>70B5F2B8-B119-4856-A015-30EB654CD9B0</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/kernel1994/PracticalTrainingofObjective-C.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>70B5F2B8-B119-4856-A015-30EB654CD9B0</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>70B5F2B8-B119-4856-A015-30EB654CD9B0</string>
+			<key>IDESourceControlWCCName</key>
+			<string>PracticalTrainingCode</string>
+		</dict>
+	</array>
+</dict>
+</plist>
