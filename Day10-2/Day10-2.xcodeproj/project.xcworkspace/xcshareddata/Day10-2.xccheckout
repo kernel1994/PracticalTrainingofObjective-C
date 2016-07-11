@@ -5,19 +5,19 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>0510D869-94EA-4FEB-9614-21540FD33A8B</string>
+	<string>4DA5F13A-796E-4649-BAE3-7A418444BB94</string>
 	<key>IDESourceControlProjectName</key>
-	<string>Day7-1</string>
+	<string>Day10-2</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>70B5F2B8-B119-4856-A015-30EB654CD9B0</key>
+		<key>63D9FAEE-266B-4530-B003-534C849C9936</key>
 		<string>ssh://github.com/kernel1994/PracticalTrainingofObjective-C.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Day7-1/Day7-1.xcodeproj/project.xcworkspace</string>
+	<string>Day10-2/Day10-2.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>70B5F2B8-B119-4856-A015-30EB654CD9B0</key>
+		<key>63D9FAEE-266B-4530-B003-534C849C9936</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>70B5F2B8-B119-4856-A015-30EB654CD9B0</string>
+	<string>63D9FAEE-266B-4530-B003-534C849C9936</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>70B5F2B8-B119-4856-A015-30EB654CD9B0</string>
+			<string>63D9FAEE-266B-4530-B003-534C849C9936</string>
 			<key>IDESourceControlWCCName</key>
 			<string>PracticalTrainingCode</string>
 		</dict>

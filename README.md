@@ -4,7 +4,7 @@ Practical Training code of Objective-C
 # 实训记录
 
 ## 2016-07-02
-老师讲了很多关于苹果一些知识，我收获很多。嘻嘻
+老师讲了很多关于苹果一些知识，我收获很多。下课我就去买了一斤。
 
 ## 2016-07-03
 + 基本知识
@@ -111,3 +111,76 @@ view.frame = rect;
     + view.transform = CGAffineTransFormMakeRotation(), 参数是弧度
 + 改变中心点：view.center = CGPointMake(x, y);
 
+## 2016-07-11
++ 输入框：UITextField
+    + 设置边框样式：textField.borderStyle = UITextBorderStyleLine;
+    + 成为第一响应状态：[textField becomeFirstResponder];
+    + 文本框结束编辑
+        + 结束所有编辑状态：[self.window endEditing: YES];
+        + 取消第一响应状态：[textField resignFirstResponder];
+        + 绑定事件，点击键盘上 return 退出：[self.nameInput addTarget:self action:@selector(keyboardGone) forControlEvents:UIControlEventEditingDidEndOnExit];
+    + 设置占位内容：textField.placeholder = @"xxx";
+    + 清除上次内容：textField.clearsContextBeforeDrawing = YES;
+    + 设置清除内容：textField.clearButtonMode = UITextFieldViewModeAlways;
+    + 设置键盘样式：textField.keyBoardType = UIKeyboardTypeNumberPad;
+    + 文本显示方式：textField.secureTextEntry = YES;
++ 创建按钮另一种方法：btn = [UIButton buttonWithType: UIButtonTypeCustom];
++ 页面切换
+    + 先移除页面：[subview removeFromSuperview];
+    + 再添加页面：[self.window addSubview: subview];
++ 页面传值：
+    + ?
++ 数据存储
+    + 存储位置：沙盒
+    + 沙盒目录
+        + Documents：用户数据
+        + Libarary：系统数据
+            + Caches：缓存
+            + Preferences：系统数据
+        + tmp：临时数据
+        + xxx.app：应用程序资源，只读
+    + 获取沙盒路径
+        + NSHomeDirectory()
+        + 路径拼接：[NSHomeDirectory() stringByAppendingPathComponent: @"Documents"];
+        + 搜索路径：NSArray * stringArray =  NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES);
+        + 获取主资源束，当前应用的目录：
+            + NSBundle * bundle = [NSBundle mainBundle];
+            + [bundle pathForResource:@"bg" ofType:@"png"];
+    + 存储数据
+        + NSUserDefaults
+            + 存
+                ```Objective-C
+                // NSUserDefaults， 单例类，存储用户信息
+                NSUserDefaults * userDef = [NSUserDefaults standardUserDefaults];
+                // 使用键值对
+                [userDef setObject:self.username.text forKey:@"name"];
+                [userDef setObject:self.password.text forKey:@"pwd"];
+                // 立即写入
+                [userDef synchronize];
+                ```
+            + 读
+                ```Objective-C
+                NSUserDefaults * userDef = [NSUserDefaults standardUserDefaults];
+                NSString * name = [userDef objectForKey:@"name"];
+                NSString * pwd = [userDef objectForKey:@"pwd"];
+                ```
+        + [string writeToFile]
+            + 存
+                ```Objective-C
+                NSString * str = [NSString stringWithFormat:@"%@-%@", self.username.text, self.password.text];
+                NSString * path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/textSave"];
+                if ([str writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
+                    NSLog(@"success");
+                } else {
+                    NSLog(@"fail");
+                }
+                ```
+            + 读
+                ```Objective-C
+                NSString * path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/textSave"];
+                NSString * str = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+                NSArray * arr = [str componentsSeparatedByString:@"-"];
+                NSString * name = arr[0];
+                NSString * pwd = arr[1];
+                ```
+        + 还可以存数组，我就不写了
