@@ -149,38 +149,55 @@ view.frame = rect;
     + 存储数据
         + NSUserDefaults
             + 存
-                ```Objective-C
-                // NSUserDefaults， 单例类，存储用户信息
-                NSUserDefaults * userDef = [NSUserDefaults standardUserDefaults];
-                // 使用键值对
-                [userDef setObject:self.username.text forKey:@"name"];
-                [userDef setObject:self.password.text forKey:@"pwd"];
-                // 立即写入
-                [userDef synchronize];
-                ```
+```Objective-C
+// NSUserDefaults， 单例类，存储用户信息
+NSUserDefaults * userDef = [NSUserDefaults standardUserDefaults];
+// 使用键值对
+[userDef setObject:self.username.text forKey:@"name"];
+[userDef setObject:self.password.text forKey:@"pwd"];
+// 立即写入
+[userDef synchronize];
+```
             + 读
-                ```Objective-C
-                NSUserDefaults * userDef = [NSUserDefaults standardUserDefaults];
-                NSString * name = [userDef objectForKey:@"name"];
-                NSString * pwd = [userDef objectForKey:@"pwd"];
-                ```
+```Objective-C
+NSUserDefaults * userDef = [NSUserDefaults standardUserDefaults];
+NSString * name = [userDef objectForKey:@"name"];
+NSString * pwd = [userDef objectForKey:@"pwd"];
+```
         + [string writeToFile]
             + 存
-                ```Objective-C
-                NSString * str = [NSString stringWithFormat:@"%@-%@", self.username.text, self.password.text];
-                NSString * path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/textSave"];
-                if ([str writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
-                    NSLog(@"success");
-                } else {
-                    NSLog(@"fail");
-                }
-                ```
+```Objective-C
+NSString * str = [NSString stringWithFormat:@"%@-%@", self.username.text, self.password.text];
+NSString * path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/textSave"];
+if ([str writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
+    NSLog(@"success");
+} else {
+    NSLog(@"fail");
+}
+```
             + 读
-                ```Objective-C
-                NSString * path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/textSave"];
-                NSString * str = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-                NSArray * arr = [str componentsSeparatedByString:@"-"];
-                NSString * name = arr[0];
-                NSString * pwd = arr[1];
-                ```
+```Objective-C
+NSString * path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/textSave"];
+NSString * str = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+NSArray * arr = [str componentsSeparatedByString:@"-"];
+NSString * name = arr[0];
+NSString * pwd = arr[1];
+```
         + 还可以存数组，我就不写了
+
+## 2016-07-12
++ UIImageView 圆角：
+```Objective-C
+imageView.layer.masksToBounds = YES;
+imageView.layer.cornerRadius = 40;
+```
++ 正则表达式：
+```Objective-C
+- (BOOL) isValidPhone: (NSString *) phone
+{
+    NSString * phoneRegex = @"^((13[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}$";
+    NSPredicate * phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
+    return [phoneTest evaluateWithObject: phone];
+}
+```
+
