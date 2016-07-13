@@ -231,7 +231,7 @@
     
     [UIView commitAnimations];
     
-//    self.pwd.text = @"";
+    self.pwd.text = @"";
 }
 
 - (void) goSignupBtnTage

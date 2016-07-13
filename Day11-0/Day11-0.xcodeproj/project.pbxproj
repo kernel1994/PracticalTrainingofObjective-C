@@ -19,7 +19,7 @@
 		F59A8C641D347A6F009DF037 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F59A8C4C1D347A6E009DF037 /* UIKit.framework */; };
 		F59A8C6C1D347A6F009DF037 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F59A8C6A1D347A6F009DF037 /* InfoPlist.strings */; };
 		F59A8C6E1D347A6F009DF037 /* Day11_0Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = F59A8C6D1D347A6F009DF037 /* Day11_0Tests.m */; };
-		F59A8C781D348447009DF037 /* av.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F59A8C771D348447009DF037 /* av.jpg */; };
+		F59A8C781D348447009DF037 /* av.png in Resources */ = {isa = PBXBuildFile; fileRef = F59A8C771D348447009DF037 /* av.png */; };
 		F5D0FD5D1D34D30400EFEC5A /* kernel1994DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D0FD5C1D34D30400EFEC5A /* kernel1994DataSource.m */; };
 /* End PBXBuildFile section */
 
@@ -50,7 +50,7 @@
 		F59A8C691D347A6F009DF037 /* Day11-0Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Day11-0Tests-Info.plist"; sourceTree = "<group>"; };
 		F59A8C6B1D347A6F009DF037 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F59A8C6D1D347A6F009DF037 /* Day11_0Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Day11_0Tests.m; sourceTree = "<group>"; };
-		F59A8C771D348447009DF037 /* av.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = av.jpg; sourceTree = "<group>"; };
+		F59A8C771D348447009DF037 /* av.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = av.png; sourceTree = "<group>"; };
 		F5D0FD5B1D34D30400EFEC5A /* kernel1994DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kernel1994DataSource.h; sourceTree = "<group>"; };
 		F5D0FD5C1D34D30400EFEC5A /* kernel1994DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kernel1994DataSource.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,7 +112,7 @@
 		F59A8C4E1D347A6E009DF037 /* Day11-0 */ = {
 			isa = PBXGroup;
 			children = (
-				F59A8C771D348447009DF037 /* av.jpg */,
+				F59A8C771D348447009DF037 /* av.png */,
 				F59A8C571D347A6E009DF037 /* kernel1994AppDelegate.h */,
 				F59A8C581D347A6E009DF037 /* kernel1994AppDelegate.m */,
 				F59A8C5A1D347A6F009DF037 /* Images.xcassets */,
@@ -229,7 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F59A8C531D347A6E009DF037 /* InfoPlist.strings in Resources */,
-				F59A8C781D348447009DF037 /* av.jpg in Resources */,
+				F59A8C781D348447009DF037 /* av.png in Resources */,
 				F59A8C5B1D347A6F009DF037 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -22,7 +22,9 @@
     NSMutableDictionary * mdRead = [self readUser];
     // save the new one, need to save all ready have, otherwise 
     // FBI WARRING: there need add valued to the other which maybe empty
-    [mdRead setDictionary: mdUser];
+    for (NSString * keyQQ in mdUser) {
+        [mdRead setObject:[mdUser objectForKey:keyQQ] forKey:keyQQ];
+    }
 
     return [mdRead writeToFile:self.path atomically:YES];
 }
@@ -30,7 +32,7 @@
 - (NSMutableDictionary *) readUser
 {
     NSMutableDictionary * md = [[NSMutableDictionary alloc] initWithContentsOfFile:self.path];
-    NSLog(@"%@", md);
+    NSLog(@"read-%@", md);
     
     return md;
 }

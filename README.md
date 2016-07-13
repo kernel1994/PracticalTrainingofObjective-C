@@ -201,3 +201,10 @@ imageView.layer.cornerRadius = 40;
 }
 ```
 
+## 2016-07-13
++ 视图控制器
+    + 视图控制器自带一个视图，可以通过 self.view 的方式访问
+    + 要显示某个视图控制器的 view，需要将其添加到 window 中的根视图控制器上：self.window.rootViewController = vc; 对应的视图控制器中的 - (void) viewDidLoad 方法就会执行
+    + 在视图控制器中访问 window 对象：UIWindow * window = [UIApplication sharedApplication].delegate.window;
+    + 切换页面都需要先找 window 对象，然后把需要展示的视图控制器放在 window 的根视图控制器上
+
